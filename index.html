@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
+<title>Cristo na Nuvem</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="style.css?v=18">
+<link rel="stylesheet" href="news-ticker.css">
+</head>
+<body>
+
+<!-- MENU LATERAL ESQUERDO -->
+<aside class="sidebar">
+  <div class="logo">
+    <img src="https://i.ibb.co/tpLyNcG0/cristonanuvemfundo.png" alt="Cristo na Nuvem" class="logo-image">
+    <div class="logo-text">Cristo na Nuvem</div>
+    <!-- <div class="logo-tagline">"A fé vem pelo ouvir." — Romanos 10:17</div> -->
+  </div>
+  <nav>
+    <a href="#" class="nav-item" data-page="inicio">
+      <span class="icon">⌂</span>
+      <span>Início</span>
+    </a>
+    <a href="#" class="nav-item" data-page="radio">
+      <span class="icon">♫</span>
+      <span>Rádio</span>
+    </a>
+    <a href="#" class="nav-item" data-page="culto">
+      <span class="icon">📹</span>
+      <span>Culto Ao Vivo</span>
+    </a>
+    <a href="#" class="nav-item" data-page="oracao">
+      <span class="icon"><i class="fas fa-hand-holding-heart"></i></span>
+      <span>Pedidos de Oração</span>
+    </a>
+    <a href="#" class="nav-item" data-page="biblioteca">
+      <span class="icon">📖</span>
+      <span>Biblioteca</span>
+    </a>
+    <a href="debates.html" class="nav-item" data-page="debates">
+      <span class="icon"><i class="fas fa-comments"></i></span>
+      <span>Debates</span>
+    </a>
+  </nav>
+</aside>
+
+<!-- CONTEÚDO PRINCIPAL -->
+<div class="main-content">
+  <div class="player-container">
+    <div class="radio-player">
+      <div class="player-background"></div>
+      <div class="player-content">
+        <div class="player-header">
+          <div class="banner-container">
+            <div class="banner-icon">
+              <svg class="cloud-cross-icon" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+                <!-- Nuvem -->
+                <path d="M30,50 Q20,50 15,42 Q10,34 15,26 Q18,20 25,18 Q27,10 35,8 Q45,6 52,12 Q60,8 68,10 Q76,12 80,18 Q88,20 92,28 Q96,36 92,44 Q88,50 80,50 Z" fill="white" opacity="0.95"/>
+                <!-- Cruz centralizada -->
+                <rect x="57" y="22" width="6" height="24" fill="#1e3a8a" rx="1"/>
+                <rect x="48" y="31" width="24" height="6" fill="#1e3a8a" rx="1"/>
+              </svg>
+            </div>
+            <div class="banner-content">
+              <div class="banner-title">Cristo na Nuvem</div>
+              <div class="banner-slogan">Fé que alcança, tecnologia que conecta.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="player-controls">
+          <button class="control-btn" id="playPauseBtn" type="button">
+            <span class="control-icon" id="playIcon">⏵</span>
+          </button>
+
+          <div class="signal">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </div>
+
+          <div class="control-info">
+            <div class="volume-control">
+              <span class="volume-icon"><i class="fas fa-volume-up"></i></span>
+              <input type="range" id="volumeSlider" min="0" max="100" value="80" class="volume-slider">
+              <span class="volume-value">80%</span>
+              <button class="live-btn" type="button">
+                <span class="live-pulse"></span>
+                Ao Vivo
+              </button>
+            </div>
+
+            <div class="player-meta">
+              <span class="meta-pill">128 kbps</span>
+              <span class="meta-pill">AAC+</span>
+              <span class="meta-pill">Online</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <audio id="radioStream" src="https://stream-ssl.galaxywebsolutions.com:7034/;" preload="none"></audio>
+    </div>
+  </div>
+
+  <!-- CONTEÚDO DINÂMICO -->
+  <div id="pageContent">
+  <!-- Página Inicial -->
+  <section class="page-inicio" id="inicioPage">
+    <div class="news-ticker-section">
+      <div class="news-ticker-container">
+        <div class="news-ticker-content" id="newsTicker">
+          <!-- Cards will be generated dynamically by JavaScript -->
+        </div>
+        <button class="news-ticker-control prev" id="newsTickerPrev">‹</button>
+        <button class="news-ticker-control next" id="newsTickerNext">›</button>
+      </div>
+      <div class="news-ticker-dots" id="newsTickerDots">
+        <!-- Dots will be generated dynamically -->
+      </div>
+    </div>
+
+    <div class="hero-welcome">
+      <h1><i class="fas fa-cloud"></i> Bem-vindo ao Cristo na Nuvem</h1>
+      <p>Sua rádio cristã online com conteúdo organizado e gratuito para sua jornada espiritual.</p>
+    </div>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-headphones-alt"></i></div>
+        <h3>Rádio ao Vivo</h3>
+        <p>Transmissão 24/7 com louvores, mensagens e programação especial</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon blue-icon"><i class="fas fa-book-open"></i></div>
+        <h3>Biblioteca Completa</h3>
+        <p>Acesso a estudos bíblicos, pregações, músicas e vídeos</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon blue-icon"><i class="fas fa-cloud"></i></div>
+        <h3>Conteúdo na Nuvem</h3>
+        <p>Acesse de qualquer lugar, a qualquer momento</p>
+      </div>
+    </div>
+    
+    <div class="cta-section">
+      <h2>Começe a explorar</h2>
+      <p>Navegue pelo menu lateral para acessar a rádio ao vivo ou nossa biblioteca de conteúdo.</p>
+    </div>
+
+    <!-- Seção de Projetos -->
+    <div class="projects-section">
+      <h2 class="section-title"><i class="fas fa-lightbulb"></i> Nossos Projetos</h2>
+      <p class="section-subtitle">Conheça os projetos inovadores que desenvolvemos para fortalecer sua jornada espiritual</p>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon"><i class="fas fa-book"></i></div>
+            <h3 class="project-title">Bíblia Interativa</h3>
+          </div>
+          
+          <p class="project-description">
+            Bíblia Sagrada Interativa — Web Application Gamificada.
+            A aplicação transforma a leitura bíblica em uma experiência digital envolvente, utilizando elementos de gamificação e uma interface intuitiva baseada em uma estante interativa. É possível acompanhar o progresso de leitura em tempo real, visualizar capítulos concluídos e retomar de onde parou com facilidade.
+            O objetivo é tornar o hábito da leitura mais organizado, dinâmico e acessível unindo tecnologia, usabilidade e propósito.
+          </p>
+          
+          <div class="project-tags">
+            <span class="project-tag">Inovação</span>
+            <span class="project-tag">Bíblia</span>
+            <span class="project-tag">Interativo</span>
+          </div>
+          
+          <a href="https://davidcostaddc.github.io/BibliaInteractiva/" target="_blank" class="project-link">
+            <span>Acessar Projeto</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção de Redes Sociais -->
+    <div class="social-connection-section">
+      <div class="social-container">
+        <div class="social-header">
+          <h2>Siga-nos</h2>
+          <p>Acompanhe nossa comunidade nas redes sociais e fique por dentro de todas as novidades</p>
+        </div>
+        
+        <div class="social-cards">
+          <div class="social-card">
+            <div class="social-icon"><i class="fab fa-facebook-f"></i></div>
+            <h3>Facebook</h3>
+            <p>Acompanhe posts, eventos e comunidade</p>
+            <a href="https://facebook.com" class="social-link">Visitar</a>
+          </div>
+          
+          <div class="social-card">
+            <div class="social-icon"><i class="fab fa-telegram-plane"></i></div>
+            <h3>Telegram</h3>
+            <p>Receba novidades e mensagens no nosso canal</p>
+            <a href="https://t.me/seucanal" class="social-link" target="_blank">Entrar</a>
+          </div>
+          
+          <div class="social-card">
+            <div class="social-icon"><i class="fab fa-youtube"></i></div>
+            <h3>YouTube</h3>
+            <p>Assista aos cultos e conteúdos em vídeo</p>
+            <a href="https://youtube.com" class="social-link">Inscrever-se</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção Quem Somos -->
+    <div class="quem-somos-section">
+      <h2 class="section-title"><i class="fas fa-users"></i> Quem Somos Nós</h2>
+      <p class="section-subtitle">Conheça a equipe por trás do Cristo na Nuvem</p>
+      
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="member-photo">
+            <img src="https://i.ibb.co/s9xsrpwr/88a8b2f0-7ae3-45fc-b8cf-c13335874ef3.jpg" alt="Fundador - David Da Costa">
+          </div>
+          <h3 class="member-name">David Da Costa</h3>
+          <p class="member-role">Fundador</p>
+          <p class="member-description">David é o fundador do Cristo na Nuvem. Cristão e apaixonado por tecnologia, idealizou o projeto com o propósito de usar a inovação digital como instrumento de evangelização, levando a Palavra de Deus a mais pessoas por meio da rádio e das plataformas digitais.</p>
+          <a href="https://instagram.com/idavid_dacosta" target="_blank" class="member-social">
+            <i class="fab fa-instagram"></i> @idavid_dacosta
+          </a>
+        </div>
+
+        <div class="team-member">
+          <div class="member-photo">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop" alt="Membro 2">
+          </div>
+          <h3 class="member-name">Seu Nome Aqui 1</h3>
+          <p class="member-role">COORDENADOR DE CONTEÚDO</p>
+          <p class="member-description">Descrição sobre essa pessoa, suas responsabilidades e funções dentro da organização.</p>
+          <a href="#" target="_blank" class="member-social">
+            <i class="fab fa-instagram"></i> @seudominio
+          </a>
+        </div>
+
+        <div class="team-member">
+          <div class="member-photo">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop" alt="Membro 3">
+          </div>
+          <h3 class="member-name">Seu Nome Aqui 2</h3>
+          <p class="member-role">DIRETOR TÉCNICO</p>
+          <p class="member-description">Descrição sobre essa pessoa, suas responsabilidades e funções dentro da organização.</p>
+          <a href="#" target="_blank" class="member-social">
+            <i class="fab fa-instagram"></i> @seudominio
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção de Comunidade e Fórum -->
+    <div class="community-section">
+      <div class="community-container">
+        <div class="community-icon">
+          <i class="fab fa-discord"></i>
+        </div>
+        <h2 class="community-title">Conecte-se com Nossa Comunidade Cristã</h2>
+        <p class="community-description">
+          Bem-vindo à nossa Comunidade Cristã online! Este é o lugar onde você pode crescer em fé, compartilhar experiências, discutir temas cristãos e, principalmente, encontrar apoio espiritual em momentos difíceis.
+        </p>
+        <p class="community-features">
+          Nosso <strong>Fórum de Discussão</strong> e <strong>Grupos de Apoio</strong> são dedicados a todos que desejam aprofundar seu relacionamento com Cristo, orar uns pelos outros, e apoiar aqueles que estão enfrentando dificuldades.
+        </p>
+        <a href="https://discord.gg/" target="_blank" class="discord-btn">
+          <i class="fab fa-discord"></i>
+          <span>Juntar-se ao Discord</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="help-section">
+      <div class="help-card">
+        <h2>Precisa de ajuda agora mesmo?</h2>
+        <p>Estamos prontos para ouvir você. Se deseja fazer um pedido de oração, compartilhar uma dificuldade ou buscar orientação espiritual, nossa equipe está disponível para te atender no WhatsApp.</p>
+        <a href="https://wa.me/" class="help-btn"><i class="fab fa-whatsapp"></i><span>Falar no WhatsApp</span></a>
+      </div>
+    </div>
+
+    <div class="terms-section">
+      <div class="terms-card">
+        <div class="terms-header">
+          <div class="terms-icon shield"><i class="fas fa-shield-alt"></i></div>
+          <div class="terms-titles">
+            <h3>Direitos Autorais e Uso de Conteúdo</h3>
+            <p class="terms-subtitle">Respeito à Lei 9.610/1998 e aos princípios éticos cristãos</p>
+          </div>
+        </div>
+        <div class="terms-cta">
+          <p class="terms-cta-text">Abra o aviso completo para ler como cuidamos de direitos autorais, uso responsável e pedidos de remoção.</p>
+          <div class="terms-cta-actions centered">
+            <button class="terms-modal-btn" id="openTermsModal" type="button">
+              <span class="terms-btn-icon"><i class="fas fa-circle-info"></i></span>
+              <span class="terms-btn-text">Abrir aviso completo</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="terms-modal" id="termsModal" aria-hidden="true">
+      <div class="terms-modal-backdrop"></div>
+      <div class="terms-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="termsModalTitle">
+        <div class="terms-modal-topbar"></div>
+        <div class="terms-modal-header">
+          <div class="terms-modal-icon"><i class="fas fa-gavel"></i></div>
+          <div class="terms-modal-titles">
+            <h4 id="termsModalTitle">Direitos Autorais e Uso de Conteúdo</h4>
+            <p>Respeito à Lei 9.610/1998 e aos princípios éticos cristãos</p>
+          </div>
+          <button class="terms-modal-close" id="closeTermsModal" type="button" aria-label="Fechar aviso">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="terms-modal-body">
+          <div class="terms-content sections">
+            <div class="terms-item section">
+              <div class="terms-section-icon"><i class="fas fa-copyright"></i></div>
+              <div class="terms-section-title">Direitos Autorais e Uso de Conteúdo</div>
+              <div class="terms-text">Cristo na Nuvem tem como finalidade a evangelização, educação cristã e divulgação de conteúdo religioso, sempre pautado no respeito à legislação brasileira e aos princípios éticos cristãos. Todo o conteúdo disponibilizado neste site observa e respeita a Lei nº 9.610/1998 (Lei de Direitos Autorais), não tendo como objetivo a violação, reprodução indevida ou distribuição ilegal de obras protegidas.</div>
+            </div>
+
+            <div class="terms-item section">
+              <div class="terms-section-icon"><i class="fas fa-book"></i></div>
+              <div class="terms-section-title">Origem dos Conteúdos</div>
+              <div class="terms-text">
+                Os materiais publicados no Cristo na Nuvem enquadram-se em uma ou mais das seguintes categorias:
+                <ul class="terms-sublist">
+                  <li>Conteúdo autoral próprio, produzido pela equipe do site;</li>
+                  <li>Conteúdos utilizados mediante autorização expressa de seus respectivos autores, ministérios ou detentores dos direitos;</li>
+                  <li>Obras em domínio público, conforme a legislação vigente;</li>
+                  <li>Links externos para plataformas oficiais (YouTube, Spotify, streaming, sites institucionais), sem hospedagem direta dos arquivos neste site.</li>
+                </ul>
+                Cristo na Nuvem não hospeda nem distribui arquivos protegidos por direitos autorais sem autorização.
+              </div>
+            </div>
+
+            <div class="terms-item section">
+              <div class="terms-section-icon"><i class="fas fa-link"></i></div>
+              <div class="terms-section-title">Conteúdos de Terceiros e Links Externos</div>
+              <div class="terms-text">Conteúdos acessados por meio de links externos são de responsabilidade exclusiva de seus respectivos autores, ministérios, editoras ou plataformas, não cabendo ao site controle sobre eventuais alterações ou remoções realizadas por terceiros. A disponibilização de links tem caráter informativo e indicativo, sem fins de redistribuição.</div>
+            </div>
+
+            <div class="terms-item section">
+              <div class="terms-section-icon"><i class="fas fa-ban"></i></div>
+              <div class="terms-section-title">Uso Indevido pelo Usuário</div>
+              <div class="terms-text">É vedada a reprodução, redistribuição, modificação, comercialização ou qualquer outra forma de uso dos conteúdos disponibilizados neste site sem a devida autorização do detentor dos direitos autorais, salvo nos casos permitidos por lei.</div>
+            </div>
+
+            <div class="terms-item section">
+              <div class="terms-section-icon"><i class="fas fa-envelope"></i></div>
+              <div class="terms-section-title">Solicitação de Remoção de Conteúdo</div>
+              <div class="terms-text">
+                Caso você seja detentor de direitos autorais e identifique algum conteúdo que considere infringir seus direitos, solicitamos que entre em contato para análise e eventual remoção imediata. A solicitação deve conter, sempre que possível:
+                <ul class="terms-sublist">
+                  <li>Identificação do solicitante;</li>
+                  <li>Comprovação de titularidade dos direitos;</li>
+                  <li>Link direto do conteúdo questionado;</li>
+                  <li>Descrição objetiva da solicitação.</li>
+                </ul>
+                As solicitações serão analisadas com seriedade e boa-fé, em prazo razoável, podendo ocorrer remoção preventiva do conteúdo durante a análise.
+              </div>
+            </div>
+
+            <div class="terms-item section">
+              <div class="terms-section-icon"><i class="fas fa-sync"></i></div>
+              <div class="terms-section-title">Atualizações desta Política</div>
+              <div class="terms-text">Esta política pode ser atualizada a qualquer momento, sem aviso prévio, para adequação legal, técnica ou editorial.</div>
+            </div>
+
+            <div class="terms-item section">
+              <div class="terms-section-icon"><i class="fas fa-cross"></i></div>
+              <div class="terms-section-title">Compromisso Cristão</div>
+              <div class="terms-text">Cristo na Nuvem reafirma seu compromisso com a verdade, ética, respeito ao próximo e à lei, entendendo que a evangelização deve caminhar lado a lado com a responsabilidade legal e moral.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Página Rádio -->
+  <section class="page-radio" id="radioPage" style="display: none;">
+    <div class="hero-welcome">
+      <h1><i class="fas fa-music"></i> Rádio Cristo na Nuvem</h1>
+      <p>Transmissão ao vivo 24 horas por dia</p>
+    </div>
+    
+    <div class="radio-info">
+      <div class="info-card">
+        <h3><i class="fas fa-broadcast-tower"></i> Programação</h3>
+        <ul>
+          <li><strong>06h - 12h:</strong> Louvores Matinais</li>
+          <li><strong>12h - 18h:</strong> Mensagens e Estudos</li>
+          <li><strong>18h - 00h:</strong> Louvores Noturnos</li>
+          <li><strong>00h - 06h:</strong> Música Instrumental</li>
+        </ul>
+      </div>
+      
+      <div class="info-card">
+        <h3><i class="fas fa-info-circle"></i> Sobre a Rádio</h3>
+        <p>Cristo na Nuvem é uma rádio cristã online dedicada a levar a palavra de Deus através de louvores, pregações e estudos bíblicos.</p>
+        <p>Use o player acima para ouvir nossa transmissão ao vivo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Página Culto Ao Vivo -->
+  <section class="page-culto" id="cultoPage" style="display: none;">
+    <div class="hero-welcome">
+      <h1><i class="fas fa-video"></i> Culto Ao Vivo</h1>
+      <p>Assista nossa transmissão ao vivo direto da igreja</p>
+      <div style="width: 100%; text-align: center; margin: 18px 0 0 0;">
+        <button id="btnVoltarCulto" style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); color: #fff; border: none; padding: 12px 32px; border-radius: 8px; font-size: 1rem; font-weight: 700; cursor: pointer; box-shadow: 0 2px 10px rgba(59,130,246,0.13); display: inline-flex; align-items: center; gap: 8px;">
+          <i class="fas fa-arrow-left"></i> Voltar
+        </button>
+      </div>
+    <script>
+    // Botão de voltar na página de Culto Ao Vivo
+    document.addEventListener('DOMContentLoaded', function() {
+      var btnVoltarCulto = document.getElementById('btnVoltarCulto');
+      if (btnVoltarCulto) {
+        btnVoltarCulto.addEventListener('click', function() {
+          // Reexibe a sidebar
+          var sidebar = document.querySelector('.sidebar');
+          if (sidebar) sidebar.style.display = '';
+          // Volta para a página inicial
+          document.getElementById('cultoPage').style.display = 'none';
+          document.getElementById('inicioPage').style.display = 'block';
+          // Marca o menu como ativo
+          document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+          var inicioItem = document.querySelector('.nav-item[data-page="inicio"]');
+          if (inicioItem) inicioItem.classList.add('active');
+        });
+      }
+    });
+    </script>
+    </div>
+    
+    <div class="live-stream-container">
+      <div class="stream-header">
+        <!-- live-badge removido conforme solicitado -->
+        <h2>Culto de Adoração</h2>
+        <p class="stream-time effect-pulse" style="text-align:center;display:flex;align-items:center;justify-content:center;gap:10px;">
+          <span class="pulse-camera-blue"><i class="fas fa-video"></i></span>
+          Transmitindo agora
+        </p>
+      </div>
+      
+      <div class="video-stream">
+        <div class="video-wrapper">
+          <iframe 
+            src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID&autoplay=0" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+      
+      <div class="stream-info">
+        <div class="info-card">
+          <h3><i class="fas fa-calendar"></i> Horários dos Cultos</h3>
+          <ul>
+            <li><strong>Domingo:</strong> 10h e 19h</li>
+            <li><strong>Quarta-feira:</strong> 20h - Culto de Oração</li>
+            <li><strong>Sexta-feira:</strong> 20h - Culto de Libertação</li>
+          </ul>
+        </div>
+        
+        <div class="info-card">
+          <h3><i class="fas fa-comments"></i> Participe</h3>
+          <p>Participe da transmissão ao vivo através do chat e compartilhe suas orações conosco.</p>
+          <p>Fique conectado com a família Cristo na Nuvem!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Página Pedidos de Oração -->
+  <section class="page-oracao" id="oracaoPage" style="display: none;">
+        <div class="hero-welcome">
+          <h1><i class="fas fa-hand-holding-heart"></i> Pedidos de Oração</h1>
+          <p>Compartilhe seu pedido e nossa equipe estará intercedendo por você.</p>
+          <div style="width: 100%; text-align: center; margin: 18px 0 0 0;">
+            <button id="btnVoltarOracao" style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); color: #fff; border: none; padding: 12px 32px; border-radius: 8px; font-size: 1rem; font-weight: 700; cursor: pointer; box-shadow: 0 2px 10px rgba(59,130,246,0.13); display: inline-flex; align-items: center; gap: 8px;">
+              <i class="fas fa-arrow-left"></i> Voltar
+            </button>
+          </div>
+        </div>
+
+    <div class="prayer-section">
+      
+      <div class="prayer-card primary-form">
+        <h2>Envie seu pedido de oração</h2>
+        <form id="prayerForm" class="prayer-form">
+          <div class="form-group">
+            <label for="prayerName">Nome</label>
+            <input type="text" id="prayerName" name="name" placeholder="Seu nome" class="form-input" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="prayerEmail">Email</label>
+            <input type="email" id="prayerEmail" name="email" placeholder="seu.email@exemplo.com" class="form-input" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="prayerRequest">Seu pedido de oração</label>
+            <textarea id="prayerRequest" name="request" placeholder="Compartilhe seu pedido com detalhes..." class="form-textarea" rows="6" required></textarea>
+          </div>
+          
+          <button type="submit" class="form-btn">📨 Enviar Pedido</button>
+        </form>
+      </div>
+
+      <div class="prayer-card secondary">
+         <h3>Horários de intercessão</h3>
+         <ul>
+           <li>Segunda a Sexta: 7h e 19h</li>
+           <li>Domingo: 9h e 18h</li>
+           <li>Equipe dedicada 24/7 para emergências</li>
+         </ul>
+       </div>
+    </div>
+  </section>
+
+  <!-- Página Biblioteca -->
+  <section class="page-biblioteca" id="bibliotecaPage" style="display: none;">
+    <div class="library-section">
+      <div class="library-header">
+        <h2><i class="fas fa-book-open"></i> Biblioteca de Conteúdo</h2>
+        <p>Conteúdo organizado e gratuito para sua jornada espiritual</p>
+      </div>
+
+      <div class="category-grid">
+        <!-- Categoria: Estudos -->
+        <div class="category-card" data-category="estudos" onclick="__openCategory('estudos')">
+          <div class="category-icon"><i class="fas fa-book-open"></i></div>
+          <h3>Estudos</h3>
+          <p class="category-desc">Estudos bíblicos, devocionais e cursos</p>
+          <ul class="file-list">
+            <li>
+              <span class="file-icon"><i class="fas fa-file-alt"></i></span>
+              <span class="file-name">Estudo: O Evangelho de João</span>
+            </li>
+            <li>
+              <span class="file-icon"><i class="fas fa-book"></i></span>
+              <span class="file-name">Devocional Semanal</span>
+            </li>
+            <li>
+              <span class="file-icon"><i class="fas fa-graduation-cap"></i></span>
+              <span class="file-name">Curso: Teologia Básica</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Categoria: Áudio -->
+        <div class="category-card" data-category="audio" onclick="__openCategory('audio')">
+          <div class="category-icon"><i class="fas fa-headphones-alt"></i></div>
+          <h3>Áudio</h3>
+          <p class="category-desc">Pregações, louvores e podcasts</p>
+          <ul class="file-list">
+            <li>
+              <span class="file-icon"><i class="fas fa-microphone-alt"></i></span>
+              <span class="file-name">Pregação: Salmo 23</span>
+            </li>
+            <li>
+              <span class="file-icon"><i class="fas fa-comments"></i></span>
+              <span class="file-name">Testemunho: Deus é Fiel</span>
+            </li>
+            <li>
+              <span class="file-icon"><i class="fas fa-podcast"></i></span>
+              <span class="file-name">Podcast: Fé em Ação</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Categoria: Músicas -->
+        <div class="category-card" data-category="musicas" onclick="__openCategory('musicas')">
+          <div class="category-icon"><i class="fas fa-music"></i></div>
+          <h3>Músicas</h3>
+          <p class="category-desc">Louvores e hinos</p>
+          <ul class="file-list">
+            <li>
+              <span class="file-icon"><i class="fas fa-music"></i></span>
+              <span class="file-name">Letra: Tu És Fiel Senhor</span>
+            </li>
+            <li>
+              <span class="file-icon"><i class="fas fa-compact-disc"></i></span>
+              <span class="file-name">Louvor: Vitória no Deserto</span>
+            </li>
+            <li>
+              <span class="file-icon"><i class="fas fa-play"></i></span>
+              <span class="file-name">Playback: Nada Além do Sangue</span>
+            </li>
+            <li>
+              <span class="file-icon"><i class="fas fa-file-pdf"></i></span>
+              <span class="file-name">Cifras</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Categoria: Vídeos da Semana -->
+        <div class="category-card" data-category="videos" onclick="__openCategory('videos')">
+          <div class="category-icon"><i class="fas fa-play-circle"></i></div>
+          <h3>Vídeos da Semana</h3>
+          <p class="category-desc">Cultos, testemunhos e clipes da semana atual</p>
+          <ul class="file-list">
+            <li>
+              <span class="file-icon"><i class="fas fa-video"></i></span>
+              <span class="file-name">Culto: Domingo Especial</span>
+            </li>
+            <li>
+              <span class="file-icon"><i class="fas fa-film"></i></span>
+              <span class="file-name">Testemunho: Maria Silva</span>
+            </li>
+            <li>
+              <span class="file-icon"><i class="fas fa-play-circle"></i></span>
+              <span class="file-name">Clipe: Deus Cuida de Mim</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Categoria: Filmes Cristãos -->
+        <div class="category-card" data-category="filmes" onclick="__openCategory('filmes')">
+          <div class="category-icon"><i class="fas fa-film"></i></div>
+          <h3>Filmes</h3>
+          <p class="category-desc">Longas cristãos para maratonar em família</p>
+          <ul class="file-list">
+            <li>
+              <span class="file-icon"><i class="fas fa-film"></i></span>
+              <span class="file-name">Desafiando Gigantes</span>
+            </li>
+            <li>
+              <span class="file-icon"><i class="fas fa-film"></i></span>
+              <span class="file-name">Deus Não Está Morto</span>
+            </li>
+            <li>
+              <span class="file-icon"><i class="fas fa-film"></i></span>
+              <span class="file-name">Quarto de Guerra</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Categoria: Infantil -->
+        <div class="category-card" data-category="infantil" onclick="__openCategory('infantil')">
+          <div class="category-icon"><i class="fas fa-child"></i></div>
+          <h3>Infantil</h3>
+          <p class="category-desc">Histórias bíblicas para crianças</p>
+          <ul class="file-list">
+            <li>
+              <span class="file-icon"><i class="fas fa-book"></i></span>
+              <span class="file-name">História: Davi e Golias</span>
+            </li>
+            <li>
+              <span class="file-icon"><i class="fas fa-palette"></i></span>
+              <span class="file-name">Atividades: Arca de Noé</span>
+            </li>
+            <li>
+              <span class="file-icon"><i class="fas fa-music"></i></span>
+              <span class="file-name">Música: Meu Deus é Forte</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Categoria: Livros -->
+        <div class="category-card" data-category="livros" onclick="__openCategory('livros')">
+          <div class="category-icon"><i class="fas fa-book"></i></div>
+          <h3>Livros</h3>
+          <p class="category-desc">Livros cristãos e literatura edificante</p>
+          <ul class="file-list">
+            <li>
+              <span class="file-icon"><i class="fas fa-book"></i></span>
+              <span class="file-name">Livro: Caminho a Cristo</span>
+            </li>
+            <li>
+              <span class="file-icon"><i class="fas fa-book"></i></span>
+              <span class="file-name">Livro: O Grande Conflito</span>
+            </li>
+            <li>
+              <span class="file-icon"><i class="fas fa-book"></i></span>
+              <span class="file-name">Livro: Patriarcas e Profetas</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Categoria: Escola Bíblica -->
+        <div class="category-card" data-category="escola" onclick="__openCategory('escola')">
+          <div class="category-icon"><i class="fas fa-graduation-cap"></i></div>
+          <h3>Escola Bíblica</h3>
+          <p class="category-desc">Material didático e apostilas</p>
+          <ul class="file-list">
+            <li>
+              <span class="file-icon"><i class="fas fa-book"></i></span>
+              <span class="file-name">Apostila: Antigo Testamento</span>
+            </li>
+            <li>
+              <span class="file-icon"><i class="fas fa-chalkboard"></i></span>
+              <span class="file-name">Plano de Aula: Parábolas</span>
+            </li>
+            <li>
+              <span class="file-icon"><i class="fas fa-list-check"></i></span>
+              <span class="file-name">Questionário: Novo Testamento</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Categoria: Reflexões -->
+        <div class="category-card" data-category="reflexoes" onclick="__openCategory('reflexoes')">
+          <div class="category-icon"><i class="fas fa-lightbulb"></i></div>
+          <h3>Reflexões</h3>
+          <p class="category-desc">Reflexões psicológicas e bíblicas para crescimento espiritual</p>
+          <ul class="file-list">
+            <li>
+              <span class="file-icon"><i class="fas fa-lightbulb"></i></span>
+              <span class="file-name">Propósito e Prioridades</span>
+            </li>
+            <li>
+              <span class="file-icon"><i class="fas fa-heart"></i></span>
+              <span class="file-name">Relacionamentos</span>
+            </li>
+            <li>
+              <span class="file-icon"><i class="fas fa-cross"></i></span>
+              <span class="file-name">Espiritualidade e Fé</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id="libraryDetail" class="library-detail" style="display: none;"></div>
+
+      <!-- Player de vídeo inline para filmes -->
+      <div id="videoPlayerModal" class="video-player-modal video-player-inline" style="display: none;">
+        <div class="video-player-content">
+          <button class="close-player" id="closeVideoPlayer">✕</button>
+          
+          <div class="video-player-header">
+            <h3 class="player-video-title" id="playerVideoTitle">Nome do Vídeo</h3>
+            <p class="player-category-name" id="playerCategoryName">Categoria</p>
+            <div class="player-rating" id="playerRating">★★★★★</div>
+          </div>
+          
+          <div class="video-container">
+            <video id="videoElement" controls preload="metadata">
+              Seu navegador não suporta o elemento de vídeo.
+            </video>
+          </div>
+          
+          <div class="video-info">
+            <p class="video-description" id="videoDescription">Descrição do vídeo</p>
+            <div class="user-rating-section">
+              <label>Avalie este filme:</label>
+              <div class="user-rating-stars" id="userRatingStars">
+                <span class="star" data-rating="1">☆</span>
+                <span class="star" data-rating="2">☆</span>
+                <span class="star" data-rating="3">☆</span>
+                <span class="star" data-rating="4">☆</span>
+                <span class="star" data-rating="5">☆</span>
+              </div>
+              <span class="rating-message" id="ratingMessage"></span>
+            </div>
+          </div>
+
+          <div class="video-comments" id="videoCommentsSection">
+            <h4>Comentários</h4>
+            <ul id="videoCommentsList" class="comments-list">
+              <li class="comment-empty">Seja o primeiro a comentar.</li>
+            </ul>
+            <form id="commentForm" class="comment-form">
+              <input type="text" id="commentName" placeholder="Seu nome" required>
+              <textarea id="commentText" rows="3" placeholder="Escreva seu comentário" required></textarea>
+              <button type="submit" class="comment-submit">Enviar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Página Notícias - Removida pois agora está em arquivo separado -->
+
+</div>
+
+  <footer class="site-footer">
+    Todos os direitos reservados © 2026
+  </footer>
+
+</div>
+<!-- FIM MAIN-CONTENT -->
+
+<!-- PLAYER MODAL DE MÚSICA -->
+<div id="musicPlayerModal" class="music-player-modal">
+  <div class="music-player-content">
+    <button class="close-player" id="closePlayer">✕</button>
+    
+    <div class="music-player-header">
+      <img src="" alt="Capa do álbum" class="player-album-cover" id="playerAlbumCover">
+      <div class="player-song-info">
+        <h3 class="player-song-title" id="playerSongTitle">Nome da Música</h3>
+        <p class="player-artist-name" id="playerArtistName">Nome do Artista</p>
+      </div>
+    </div>
+    
+    <div class="music-progress">
+      <span class="time-current" id="currentTime">0:00</span>
+      <input type="range" class="progress-bar" id="progressBar" min="0" max="100" value="0">
+      <span class="time-total" id="totalTime">0:00</span>
+    </div>
+    
+    <div class="music-controls">
+      <button class="music-btn" id="prevBtn">⏮</button>
+      <button class="music-btn play-btn" id="musicPlayBtn">⏵</button>
+      <button class="music-btn" id="nextBtn">⏭</button>
+    </div>
+    
+    <div class="music-volume">
+      <span class="music-volume-icon">🔉</span>
+      <input type="range" class="music-volume-slider" id="musicVolumeSlider" min="0" max="100" value="70">
+      <span class="music-volume-value" id="musicVolumeValue">70%</span>
+    </div>
+    
+    <audio id="musicAudio" preload="metadata"></audio>
+  </div>
+</div>
+
+<script>
+  // Fallback simples para alternar páginas caso o script principal falhe
+  (function(){
+    window.__showPageFallback = function(pageKey){
+      try {
+        var pages = ['inicio','radio','culto','oracao','biblioteca'];
+        for (var i=0; i<pages.length; i++){
+          var el = document.getElementById(pages[i] + 'Page');
+          if (el) el.style.display = (pages[i] === pageKey) ? 'block' : 'none';
+        }
+        var items = document.querySelectorAll('.nav-item');
+        items.forEach(function(i){ i.classList.remove('active'); });
+        var target = document.querySelector('.nav-item[data-page="' + pageKey + '"]');
+        if (target) target.classList.add('active');
+      } catch (e) { /* noop */ }
+    };
+
+    // Fallback para abrir categoria da biblioteca
+    window.__openCategory = function(key){
+      try {
+        if (typeof renderLibraryDetail === 'function') {
+          renderLibraryDetail(key);
+          return;
+        }
+        var grid = document.querySelector('.category-grid');
+        var detail = document.getElementById('libraryDetail');
+        if (grid && detail) {
+          grid.style.display = 'none';
+          detail.style.display = 'block';
+          detail.innerHTML = '<div class="detail-header"><h3 class="detail-title">' + key + '</h3></div>' +
+                             '<p class="detail-desc">Carregando conteúdo...</p>';
+        }
+      } catch (e) { /* noop */ }
+    };
+
+</script>
+
+<!-- Modal de Notícia -->
+<div id="newsModal" class="news-modal">
+  <div class="news-modal-content">
+    <button class="close-news-modal" id="closeNewsModal">✕</button>
+    <div class="news-modal-header">
+      <span class="news-modal-icon" id="newsModalIcon">📢</span>
+      <h2 id="newsModalTitle">Título da Notícia</h2>
+      <p class="news-modal-date" id="newsModalDate">Data</p>
+    </div>
+    <div class="news-modal-body" id="newsModalBody">
+      Conteúdo da notícia aparecerá aqui...
+    </div>
+  </div>
+</div>
+
+<script src="script.js?v=3"></script>
+</body>
+</html>

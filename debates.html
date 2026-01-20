@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debates Cristãos - Cristo na Nuvem</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css?v=18">
+  <style>
+    /* ====== DEBATES PAGE ====== */
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Estilo da barra de rolagem */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #667eea;
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #764ba2;
+    }
+
+    /* Firefox */
+    * {
+      scrollbar-color: #667eea transparent;
+      scrollbar-width: thin;
+    }
+
+    .main-content {
+      margin-left: 260px;
+      width: calc(100% - 260px);
+      padding: 20px 30px;
+      background: #ffffff;
+      margin-bottom: 0;
+      overflow-x: hidden;
+      box-sizing: border-box;
+    }
+
+    /* Footer em debates */
+    .site-footer {
+      width: 100%;
+      background: #ffffff;
+      text-align: center;
+      padding: 30px 20px;
+      color: #475569;
+      font-size: 14px;
+      border-top: 1px solid #e5e7eb;
+      margin-top: 40px;
+    }
+
+    .debates-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 50px 30px;
+      text-align: center;
+      margin: -20px -30px 30px -30px;
+      border-radius: 0;
+    }
+
+    .debates-header h1 {
+      font-size: 36px;
+      margin: 0 0 10px 0;
+      font-weight: 700;
+    }
+
+    .debates-header p {
+      margin: 0;
+      opacity: 0.95;
+      font-size: 16px;
+    }
+
+    .debates-intro {
+      background: #f8f9fa;
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      border-left: 5px solid #667eea;
+    }
+
+    .debates-intro p {
+      margin: 15px 0;
+      line-height: 1.8;
+      color: #2d3748;
+      font-size: 16px;
+    }
+
+    .debates-intro p:first-child {
+      font-weight: 600;
+      color: #1e293b;
+      font-size: 17px;
+    }
+
+    .respect-banner {
+      background: #dbeafe;
+      border-left: 5px solid #1e40af;
+      padding: 28px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+
+    .respect-banner h3 {
+      margin: 0 0 14px 0;
+      color: #0c2340;
+      font-size: 19px;
+      font-weight: 700;
+    }
+
+    .respect-banner p {
+      margin: 12px 0;
+      color: #0c2340;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .respect-banner p strong {
+      font-weight: 700;
+      color: #0c2340;
+    }
+
+    .debates-filters {
+      background: white;
+      padding: 28px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      display: flex;
+      gap: 35px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e5e7eb;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .filter-group label {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 15px;
+    }
+
+    .filter-group > div {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 11px 20px;
+      background: white;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 14px;
+      font-weight: 600;
+      color: #475569;
+      white-space: nowrap;
+    }
+
+    .filter-btn:hover {
+      border-color: #667eea;
+      color: #667eea;
+      background: #f8f9ff;
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-color: transparent;
+      color: white;
+    }
+
+    .debates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 26px;
+      margin-bottom: 40px;
+    }
+
+    .debate-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #e5e7eb;
+      outline: none;
+    }
+
+    .debate-card:focus {
+      outline: 2px solid #667eea;
+      outline-offset: 2px;
+    }
+
+    .debate-card:hover {
+      box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+      transform: translateY(-6px);
+    }
+
+    .debate-card-icon {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 0;
+      text-align: center;
+      font-size: 48px;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .debate-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .debate-card-content {
+      padding: 22px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .debate-card-title {
+      font-size: 17px;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+      color: #1e293b;
+      line-height: 1.4;
+    }
+
+    .debate-card-date {
+      font-size: 12px;
+      color: #64748b;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .debate-card-status {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      width: fit-content;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-andamento {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status-closed,
+    .status-encerrado {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .debate-card-desc {
+      font-size: 14px;
+      color: #475569;
+      margin: 0 0 15px 0;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    .debate-card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid #e2e8f0;
+      font-size: 13px;
+      color: #64748b;
+      font-weight: 600;
+    }
+
+    .debate-card-meta i {
+      margin-right: 5px;
+      color: #667eea;
+    }
+
+    /* ====== DEBATE DETAIL MODAL ====== */
+    .debate-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    .debate-modal.active {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 40px;
+    }
+
+    .debate-modal-content {
+      background: white;
+      border-radius: 12px;
+      max-width: 800px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .debate-modal-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 35px;
+      position: relative;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .close-debate-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      padding: 0;
+    }
+
+    .close-debate-modal:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .debate-modal-header h2 {
+      margin: 0 30px 0 0;
+      font-size: 26px;
+      line-height: 1.4;
+    }
+
+    .debate-modal-meta {
+      display: flex;
+      gap: 25px;
+      font-size: 14px;
+      opacity: 0.9;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    .debate-modal-body {
+      padding: 35px;
+      overflow-y: auto;
+      max-height: calc(95vh - 150px);
+    }
+
+    .debate-instruction {
+      background: #f0f9ff;
+      border-left: 4px solid #0284c7;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+    }
+
+    .debate-instruction h3 {
+      margin: 0 0 8px 0;
+      color: #0c4a6e;
+      font-size: 16px;
+    }
+
+    .debate-instruction p {
+      margin: 0;
+      color: #164e63;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ====== SEÇÃO EXPANDIDA DO DEBATE ====== */
+    .debate-expanded-section {
+      background: white;
+      border-radius: 12px;
+      padding: 40px;
+      margin: 30px 0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      border-top: 5px solid #667eea;
+      position: relative;
+    }
+
+    .close-expanded-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #f1f5f9;
+      border: none;
+      color: #475569;
+      font-size: 18px;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .close-expanded-btn:hover {
+      background: #e2e8f0;
+      color: #1e293b;
+    }
+
+    .debate-expanded-header {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    .debate-expanded-header h2 {
+      margin: 0 0 15px 0;
+      font-size: 28px;
+      color: #1e293b;
+      line-height: 1.5;
+    }
+
+    .debate-expanded-meta {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    .debate-expanded-body {
+      padding-top: 20px;
+    }
+
+    .video-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      border: none;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.12);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .video-card:hover {
+      box-shadow: 0 12px 30px rgba(102, 126, 234, 0.25);
+      transform: translateY(-6px);
+    }
+
+    .video-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: none;
+      display: block;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .video-title {
+      padding: 18px 20px;
+      font-weight: 600;
+      color: #1e293b;
+      font-size: 15px;
+      line-height: 1.6;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .comments-section {
+      margin-top: 30px;
+    }
+
+    .comments-section h3 {
+      font-size: 18px;
+      margin: 0 0 20px 0;
+      color: #1e293b;
+    }
+
+    .comment-form {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+    }
+
+    .comment-form h4 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: #1e293b;
+    }
+
+    .comment-form-group {
+      margin-bottom: 15px;
+    }
+
+    .comment-form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #333;
+      font-size: 14px;
+    }
+
+    .comment-form-group input,
+    .comment-form-group textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .comment-form-group input:focus,
+    .comment-form-group textarea:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .comment-form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .comment-submit {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .comment-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
+
+    .comments-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .comment-item {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      border-left: 3px solid #667eea;
+    }
+
+    .comment-author {
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 5px;
+    }
+
+    .comment-date {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-bottom: 10px;
+    }
+
+    .comment-text {
+      color: #475569;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .comment-empty {
+      text-align: center;
+      padding: 30px;
+      color: #94a3b8;
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        padding: 15px;
+      }
+
+      .debates-header {
+        margin: -15px -15px 25px -15px;
+        padding: 35px 20px;
+      }
+
+      .debates-header h1 {
+        font-size: 28px;
+      }
+
+      .debates-header p {
+        font-size: 15px;
+      }
+
+      .debates-intro {
+        padding: 22px;
+        margin-bottom: 25px;
+      }
+
+      .debates-intro p {
+        font-size: 15px;
+        margin: 12px 0;
+        line-height: 1.6;
+      }
+
+      .respect-banner {
+        padding: 22px;
+        margin-bottom: 20px;
+      }
+
+      .respect-banner h3 {
+        font-size: 16px;
+      }
+
+      .respect-banner p {
+        font-size: 13px;
+      }
+
+      .debates-filters {
+        flex-direction: column;
+        gap: 18px;
+        padding: 22px;
+      }
+
+      .filter-group {
+        min-width: auto;
+      }
+
+      .filter-btn {
+        padding: 10px 16px;
+        font-size: 13px;
+      }
+
+      .debates-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .debate-card-icon {
+        padding: 32px;
+        font-size: 44px;
+        min-height: 110px;
+      }
+
+      .debate-card-content {
+        padding: 20px;
+      }
+
+      .debate-card-title {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .debate-card-desc {
+        font-size: 14px;
+        margin: 10px 0 14px 0;
+      }
+
+      .debate-modal {
+        padding: 10px;
+      }
+
+      .debate-modal-content {
+        width: 100%;
+        max-height: 98vh;
+      }
+
+      .debate-modal-header {
+        padding: 25px 20px;
+      }
+
+      .debate-modal-header h2 {
+        font-size: 20px;
+        margin-right: 0;
+        margin-bottom: 12px;
+      }
+
+      .close-debate-modal {
+        top: 15px;
+        right: 15px;
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
+      }
+
+      .debate-modal-body {
+        padding: 20px;
+        max-height: calc(98vh - 150px);
+      }
+
+      .debate-modal-meta {
+        gap: 15px;
+        font-size: 12px;
+      }
+
+      .debate-instruction {
+        padding: 15px;
+        margin-bottom: 15px;
+      }
+
+      .debate-instruction h3 {
+        font-size: 14px;
+      }
+
+      .debate-instruction p {
+        font-size: 13px;
+      }
+
+      .comments-section h3 {
+        font-size: 16px;
+      }
+
+      .comment-form {
+        padding: 15px;
+      }
+
+      .comment-form h4 {
+        margin-bottom: 12px;
+        font-size: 14px;
+      }
+
+      .comment-form-group label {
+        font-size: 13px;
+      }
+
+      .comment-form-group input,
+      .comment-form-group textarea {
+        font-size: 13px;
+      }
+
+      .comment-submit {
+        padding: 10px 20px;
+        font-size: 13px;
+      }
+
+      .comment-item {
+        padding: 12px;
+      }
+
+      .comment-author {
+        font-size: 13px;
+      }
+
+      .comment-date {
+        font-size: 11px;
+      }
+
+      .comment-text {
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .main-content {
+        padding: 14px 12px;
+      }
+
+      .debates-header {
+        margin: -14px -12px 22px -12px;
+        padding: 28px 16px;
+      }
+
+      .debates-header h1 {
+        font-size: 22px;
+      }
+
+      .debates-header p {
+        font-size: 14px;
+      }
+
+      .debates-intro {
+        padding: 18px;
+        margin-bottom: 20px;
+      }
+
+      .debates-intro p {
+        font-size: 14px;
+        margin: 10px 0;
+      }
+
+      .respect-banner {
+        padding: 18px;
+        margin-bottom: 20px;
+      }
+
+      .respect-banner h3 {
+        font-size: 16px;
+      }
+
+      .respect-banner p {
+        font-size: 13px;
+      }
+
+      .debates-filters {
+        flex-direction: column;
+        gap: 16px;
+        padding: 18px;
+      }
+
+      .filter-btn {
+        padding: 9px 15px;
+        font-size: 12px;
+      }
+
+      .debates-grid {
+        gap: 16px;
+      }
+
+      .debate-card-icon {
+        padding: 28px;
+        font-size: 40px;
+        min-height: 100px;
+      }
+
+      .debate-card-content {
+        padding: 18px;
+      }
+
+      .debate-card-title {
+        font-size: 15px;
+      }
+
+      .debate-card-desc {
+        font-size: 13px;
+      }
+
+      .debate-card-meta {
+        font-size: 12px;
+      }
+
+      .debate-modal {
+        padding: 10px;
+      }
+
+      .debate-modal-header {
+        padding: 22px 18px;
+      }
+
+      .debate-modal-header h2 {
+        font-size: 19px;
+        margin-bottom: 12px;
+      }
+
+      .close-debate-modal {
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
+      }
+
+      .debate-modal-body {
+        padding: 18px;
+      }
+
+      .debate-modal-meta {
+        gap: 12px;
+        font-size: 12px;
+      }
+
+      .debate-instruction {
+        padding: 14px;
+        margin-bottom: 14px;
+      }
+
+      .debate-instruction h3 {
+        font-size: 14px;
+      }
+
+      .comment-form-group {
+        margin-bottom: 12px;
+      }
+
+      .comment-form-group input,
+      .comment-form-group textarea {
+        font-size: 14px;
+      }
+
+      .comments-section h3 {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MENU LATERAL ESQUERDO -->
+<aside class="sidebar">
+  <div class="logo">
+    <img src="https://i.ibb.co/tpLyNcG0/cristonanuvemfundo.png" alt="Cristo na Nuvem" class="logo-image">
+    <div class="logo-text">Cristo na Nuvem</div>
+  </div>
+  <nav>
+    <a href="index.html?page=inicio" class="nav-item" data-page="inicio">
+      <span class="icon">⌂</span>
+      <span>Início</span>
+    </a>
+    <a href="index.html?page=radio" class="nav-item" data-page="radio">
+      <span class="icon">♫</span>
+      <span>Rádio</span>
+    </a>
+    <a href="index.html?page=culto" class="nav-item" data-page="culto">
+      <span class="icon">📹</span>
+      <span>Culto Ao Vivo</span>
+    </a>
+    <a href="index.html?page=oracao" class="nav-item" data-page="oracao">
+      <span class="icon"><i class="fas fa-hand-holding-heart"></i></span>
+      <span>Pedidos de Oração</span>
+    </a>
+    <a href="index.html?page=biblioteca" class="nav-item" data-page="biblioteca">
+      <span class="icon">📖</span>
+      <span>Biblioteca</span>
+    </a>
+    <a href="#" class="nav-item" data-page="debates">
+      <span class="icon"><i class="fas fa-comments"></i></span>
+      <span>Debates</span>
+    </a>
+    
+  </nav>
+</aside>
+
+<!-- CONTEÚDO PRINCIPAL -->
+<div class="main-content">
+  <div class="debates-header">
+    <h1><i class="fas fa-comments"></i> Debates Cristãos</h1>
+    <p>Espaço para discussões construtivas e edificantes</p>
+  </div>
+
+  <div class="debates-intro">
+    <p><strong>Bem-vindo ao espaço de debates cristãos!</strong></p>
+    <p>Aqui, você pode participar de discussões construtivas sobre temas que enriquecem nossa caminhada cristã. Seja sobre teologia, prática cristã, ou questões atuais à luz da fé, nosso objetivo é promover um ambiente de respeito e aprendizado mútuo.</p>
+    <p>Lembre-se: Os debates devem ser realizados com amor, paciência e respeito ao próximo. Busque edificar os outros, ouvir atentamente e responder com sabedoria. Em todos os momentos, permita que a graça de Cristo guie suas palavras.</p>
+  </div>
+
+  <div class="respect-banner">
+    <h3><i class="fas fa-heart"></i> Como Debater Respeitosamente</h3>
+    <p><strong>Debate saudável é aquele que edifica!</strong></p>
+    <p>Lembre-se de que nossa missão é aprender uns com os outros, não vencer debates. Ao compartilhar suas ideias, faça-o com gentileza e atenção, procurando sempre edificar os outros e não criar divisões. Respeite as diferentes opiniões, evite ataques pessoais e esteja disposto a ouvir o ponto de vista do outro.</p>
+  </div>
+
+  <div class="debates-filters">
+    <div class="filter-group">
+      <label>Por Status:</label>
+      <div>
+        <button class="filter-btn active" onclick="filterDebates('status', 'todos')">Todos</button>
+        <button class="filter-btn" onclick="filterDebates('status', 'andamento')">Em Andamento</button>
+        <button class="filter-btn" onclick="filterDebates('status', 'encerrado')">Encerrado</button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <label>Por Popularidade:</label>
+      <div>
+        <button class="filter-btn" onclick="filterDebates('popular', 'comentarios')">Mais Comentários</button>
+        <button class="filter-btn" onclick="filterDebates('popular', 'visualizacoes')">Mais Visualizações</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="debates-grid" id="debatesGrid">
+    <!-- Cards de debates serão gerados aqui por JavaScript -->
+  </div>
+
+  <!-- Seção Expandida do Debate -->
+  <div id="debateExpandedSection" class="debate-expanded-section" style="display:none;">
+    <button class="close-expanded-btn" onclick="closeExpandedDebate()">← Voltar</button>
+    <div class="debate-expanded-header">
+      <h2 id="expandedDebateTitle">Título do Debate</h2>
+      <div class="debate-expanded-meta">
+        <span><i class="far fa-calendar"></i> <span id="expandedDebateDate">Data</span></span>
+        <span id="expandedDebateStatus"><i class="fas fa-circle"></i> Status</span>
+        <span><i class="fas fa-eye"></i> <span id="expandedDebateViews">0</span> visualizações</span>
+      </div>
+    </div>
+
+    <div class="debate-expanded-body">
+      <div class="debate-instruction" id="expandedVideosSection" style="display:none;">
+        <h3><i class="fas fa-video"></i> Vídeos Relacionados</h3>
+        <div id="expandedVideosContainer" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 15px; max-width: 100%; overflow: hidden;"></div>
+      </div>
+
+      <div class="debate-instruction">
+        <h3>Descrição do Tema</h3>
+        <p id="expandedDebateDescription">Descrição do debate aparecerá aqui...</p>
+      </div>
+
+      <div class="debate-instruction">
+        <h3><i class="fas fa-info-circle"></i> Como Participar</h3>
+        <p id="expandedDebateInstructions">Instruções para participação aparecerão aqui...</p>
+      </div>
+
+      <div class="comments-section">
+        <h3><i class="fas fa-comments"></i> Comentários (<span id="expandedCommentCount">0</span>)</h3>
+
+        <div class="comment-form">
+          <h4 style="margin-top: 0;">Adicione seu comentário</h4>
+          <form id="commentFormExpanded">
+            <div class="comment-form-group">
+              <label for="commentNameExpanded">Seu Nome</label>
+              <input type="text" id="commentNameExpanded" placeholder="Digite seu nome" required>
+            </div>
+            <div class="comment-form-group">
+              <label for="commentTextExpanded">Seu Comentário</label>
+              <textarea id="commentTextExpanded" placeholder="Escreva seu comentário com respeito e edificação" required></textarea>
+            </div>
+            <button type="submit" class="comment-submit">Enviar Comentário</button>
+          </form>
+        </div>
+
+        <ul class="comments-list" id="expandedCommentsList">
+          <li class="comment-empty">Seja o primeiro a comentar neste debate.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<script>
+  // Dados dos debates
+  console.log('Script iniciado');
+  
+  const debatesData = {
+    1: {
+      image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=300&fit=crop',
+      title: 'A Interpretação das Parábolas',
+      description: 'O que as parábolas de Jesus nos ensinam sobre o Reino de Deus?',
+      instructions: 'Compartilhe suas interpretações sobre as parábolas bíblicas. Como elas aplicam-se à sua vida atual? Ouça respeitosamente as perspectivas dos outros e busque enriquecer a discussão.',
+      date: '15/01/2026',
+      status: 'andamento',
+      tema: 'teologia',
+      views: 523,
+      videos: [
+        { title: 'As Parábolas do Reino', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
+        { title: 'Entendendo as Parábolas de Cristo', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' }
+      ],
+      comments: []
+    },
+    2: {
+      image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=300&fit=crop',
+      title: 'Cristianismo e os Desafios Sociais',
+      description: 'Como a fé cristã nos orienta para enfrentar problemas sociais contemporâneos?',
+      instructions: 'Debata como princípios bíblicos podem ser aplicados em questões sociais atuais. Busque compreender diferentes perspectivas cristãs com respeito e abertura.',
+      date: '22/01/2026',
+      status: 'andamento',
+      tema: 'contemporanea',
+      views: 789,
+      videos: [
+        { title: 'O Cristão e a Responsabilidade Social', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' }
+      ],
+      comments: [
+        { author: 'Maria Silva', date: '24/01/2026', text: 'Acho importante a Igreja se envolver nas questões sociais com base no Evangelho.' },
+        { author: 'João Santos', date: '25/01/2026', text: 'Concordo, desde que mantenhamos o foco espiritual como prioridade.' }
+      ]
+    },
+    3: {
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop',
+      title: 'A Salvação e a Predestinação',
+      description: 'Como reconciliar o livre arbítrio humano com a predestinação divina?',
+      instructions: 'Explore diferentes interpretações teológicas sobre este tema clássico. Respeite as convicções dos outros enquanto compartilha sua compreensão da Palavra de Deus.',
+      date: '30/12/2025',
+      status: 'encerrado',
+      tema: 'teologia',
+      views: 1243,
+      videos: [
+        { title: 'Predestinação e Livre Arbítrio', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
+        { title: 'O Plano de Deus para a Salvação', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' }
+      ],
+      comments: [
+        { author: 'Pastor Miguel', date: '02/01/2026', text: 'Uma discussão muito proveitosa! Obrigado a todos que participaram.' }
+      ]
+    },
+    4: {
+      image: 'https://images.unsplash.com/photo-1507842217343-583f7270bfba?w=400&h=300&fit=crop',
+      title: 'A Prática da Oração no Mundo Moderno',
+      description: 'Como aprofundar nossa vida de oração em um mundo acelerado e digital?',
+      instructions: 'Compartilhe sua experiência com a oração. Quais desafios enfrenta? Que transformações a oração trouxe à sua vida? Edifique outros com seu testemunho.',
+      date: '10/01/2026',
+      status: 'andamento',
+      tema: 'pratica',
+      views: 456,
+      videos: [
+        { title: 'O Poder da Oração', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' }
+      ],
+      comments: []
+    },
+    5: {
+      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop',
+      title: 'O Cristão e a Política',
+      description: 'Qual deve ser o papel do cristão na política moderna?',
+      instructions: 'Discuta como valores cristãos podem orientar a participação política. Respeite opiniões políticas diferentes mantendo a unidade em Cristo.',
+      date: '18/01/2026',
+      status: 'andamento',
+      tema: 'contemporanea',
+      views: 892,
+      videos: [
+        { title: 'Fé e Política: Uma Perspectiva Cristã', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' }
+      ],
+      comments: []
+    },
+    6: {
+      image: 'https://images.unsplash.com/photo-1502675135487-164b6f253b14?w=400&h=300&fit=crop',
+      title: 'O Cristão e o Perdão',
+      description: 'Como aplicar o perdão nas situações mais difíceis da vida cotidiana?',
+      instructions: 'Compartilhe experiências sobre perdão. Como Cristo nos ensinou a perdoar? Qual é o poder transformador do perdão? Seja vulnerável e honesto.',
+      date: '05/01/2026',
+      status: 'encerrado',
+      tema: 'pratica',
+      views: 1567,
+      videos: [
+        { title: 'O Perdão que Cura', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
+        { title: 'Como Perdoar de Verdade', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' }
+      ],
+      comments: [
+        { author: 'Ana Costa', date: '08/01/2026', text: 'O perdão é realmente libertador. Obrigada pelas reflexões compartilhadas!' }
+      ]
+    }
+  };
+
+  let currentFilter = {
+    status: 'todos',
+    popular: null
+  };
+
+  // Renderizar cards
+  function renderDebates(filter = currentFilter) {
+    const grid = document.getElementById('debatesGrid');
+    grid.innerHTML = '';
+
+    let debatesArray = Object.entries(debatesData);
+
+    // Aplicar filtros
+    debatesArray = debatesArray.filter(([id, debate]) => {
+      if (filter.status !== 'todos' && debate.status !== filter.status) return false;
+      return true;
+    });
+
+    // Aplicar ordenação
+    if (filter.popular === 'comentarios') {
+      debatesArray.sort((a, b) => b[1].comments.length - a[1].comments.length);
+    } else if (filter.popular === 'visualizacoes') {
+      debatesArray.sort((a, b) => b[1].views - a[1].views);
+    }
+
+    // Se nenhum resultado
+    if (debatesArray.length === 0) {
+      grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #94a3b8;"><p><i class="fas fa-search"></i> Nenhum debate encontrado com os filtros selecionados.</p></div>';
+      return;
+    }
+
+    // Renderizar cards
+    debatesArray.forEach(([id, debate]) => {
+      const statusClass = `status-${debate.status}`;
+      const statusText = {
+        'andamento': 'Em Andamento',
+        'encerrado': 'Encerrado'
+      }[debate.status];
+
+      const card = document.createElement('div');
+      card.className = 'debate-card';
+      card.setAttribute('tabindex', '0');
+      card.innerHTML = `
+        <div class="debate-card-icon"><img src="${debate.image}" alt="${debate.title}" class="debate-card-img"></div>
+        <div class="debate-card-content">
+          <h3 class="debate-card-title">${debate.title}</h3>
+          <div class="debate-card-date"><i class="far fa-calendar"></i> ${debate.date}</div>
+          <span class="debate-card-status ${statusClass}">${statusText}</span>
+          <p class="debate-card-desc">${debate.description}</p>
+          <div class="debate-card-meta">
+            <span><i class="fas fa-eye" aria-label="Visualizações"></i> ${debate.views}</span>
+            <span><i class="fas fa-comments" aria-label="Comentários"></i> ${debate.comments.length}</span>
+          </div>
+        </div>
+      `;
+
+      card.addEventListener('click', () => openDebateModal(id));
+      card.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openDebateModal(id);
+        }
+      });
+      
+      grid.appendChild(card);
+    });
+  }
+
+  // Filtros
+  function filterDebates(type, value) {
+    // Atualizar filtro atual
+    currentFilter[type] = value;
+
+    // Atualizar visual dos botões - remover 'active' de todos no mesmo grupo
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+
+    // Adicionar 'active' ao botão clicado
+    if (event && event.target) {
+      event.target.classList.add('active');
+    }
+
+    // Renderizar debates com novos filtros
+    renderDebates();
+
+    // Scroll suave para os resultados
+    setTimeout(() => {
+      const grid = document.getElementById('debatesGrid');
+      if (grid) {
+        grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  }
+
+  // Abrir modal
+  function openDebateModal(debateId) {
+    const debate = debatesData[debateId];
+    const expandedSection = document.getElementById('debateExpandedSection');
+    const grid = document.getElementById('debatesGrid');
+
+    document.getElementById('expandedDebateTitle').textContent = debate.title;
+    document.getElementById('expandedDebateDate').textContent = debate.date;
+    document.getElementById('expandedDebateViews').textContent = debate.views;
+    document.getElementById('expandedDebateDescription').textContent = debate.description;
+    document.getElementById('expandedDebateInstructions').textContent = debate.instructions;
+
+    const statusText = {
+      'andamento': 'Em Andamento',
+      'encerrado': 'Encerrado'
+    }[debate.status];
+    document.getElementById('expandedDebateStatus').innerHTML = `<i class="fas fa-circle"></i> ${statusText}`;
+
+    // Renderizar vídeos
+    const videosSection = document.getElementById('expandedVideosSection');
+    const videosContainer = document.getElementById('expandedVideosContainer');
+    
+    if (debate.videos && debate.videos.length > 0) {
+      videosSection.style.display = 'block';
+      videosContainer.innerHTML = `
+        <div class="video-card">
+          <iframe class="video-frame" src="${debate.videos[0].url}" allowfullscreen></iframe>
+        </div>
+      `;
+    } else {
+      videosSection.style.display = 'none';
+    }
+
+    renderCommentsExpanded(debate.comments, debateId);
+    grid.style.display = 'none';
+    expandedSection.style.display = 'block';
+    expandedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Fechar seção expandida
+  function closeExpandedDebate() {
+    const expandedSection = document.getElementById('debateExpandedSection');
+    const grid = document.getElementById('debatesGrid');
+    expandedSection.style.display = 'none';
+    grid.style.display = 'grid';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Renderizar comentários
+  function renderComments(comments, debateId) {
+    const commentsList = document.getElementById('debateCommentsList');
+    const commentCount = document.getElementById('commentCount');
+
+    commentCount.textContent = comments.length;
+
+    if (comments.length === 0) {
+      commentsList.innerHTML = '<li class="comment-empty">Seja o primeiro a comentar neste debate.</li>';
+      return;
+    }
+
+    commentsList.innerHTML = comments.map(comment => `
+      <li class="comment-item">
+        <div class="comment-author">${comment.author}</div>
+        <div class="comment-date"><i class="far fa-clock"></i> ${comment.date}</div>
+        <p class="comment-text">${comment.text}</p>
+      </li>
+    `).join('');
+  }
+
+  function renderCommentsExpanded(comments, debateId) {
+    const commentsList = document.getElementById('expandedCommentsList');
+    const commentCount = document.getElementById('expandedCommentCount');
+
+    commentCount.textContent = comments.length;
+
+    if (comments.length === 0) {
+      commentsList.innerHTML = '<li class="comment-empty">Seja o primeiro a comentar neste debate.</li>';
+      return;
+    }
+
+    commentsList.innerHTML = comments.map(comment => `
+      <li class="comment-item">
+        <div class="comment-author">${comment.author}</div>
+        <div class="comment-date"><i class="far fa-clock"></i> ${comment.date}</div>
+        <p class="comment-text">${comment.text}</p>
+      </li>
+    `).join('');
+  }
+
+  // Event listeners
+  document.getElementById('commentFormExpanded').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('commentNameExpanded').value;
+    const text = document.getElementById('commentTextExpanded').value;
+
+    if (name.trim() && text.trim()) {
+      alert('Comentário enviado com sucesso! Obrigado por participar do debate.');
+      document.getElementById('commentFormExpanded').reset();
+    }
+  });
+
+  // Renderizar ao carregar
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM carregado, renderizando debates...');
+    console.log('debatesData:', debatesData);
+    console.log('debatesGrid:', document.getElementById('debatesGrid'));
+    renderDebates();
+  });
+</script>
+
+</body>
+</html>
